@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import './App.css';
 import { FaCheck, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
@@ -32,7 +32,11 @@ function App() {
     setInprogress(filterarray);
   }
 
+  const inputRef = useRef('null');
+
   useEffect(() =>{
+
+    inputRef.current.focus();
 
   },[todos,inprogress])
   return (
@@ -43,7 +47,7 @@ function App() {
         </h3>
 
         <form className="form_todo">
-          <input type="text" className='form-control' onChange={(e) => setInput(e.target.value)} placeholder='Enter Your ToDo' name='text' />
+          <input type="text" className='form-control' ref={inputRef} onChange={(e) => setInput(e.target.value)} placeholder='Enter Your ToDo' name='text' />
           <button type='button' className='btn' onClick={() => addTodo()}><FaPlusCircle className='icon' /></button>
         </form>
         <div className="todos_wrapper">
